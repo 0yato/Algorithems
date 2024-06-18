@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaying C++ Code in HTML</title>
+    <style>
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <p>Here is a sample C++ code for a stack and its operations:</p>
+    <div class="code-block">
+        #include &lt;iostream&gt;<br>
+        using namespace std;<br>
+        <br>
+        class Stack {<br>
+        private:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int* arr;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int current;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int cap;<br>
+        public:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Stack(int num) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cap = num;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr = new int[num];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current = 0;<br>
+            }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;bool full() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (current &gt;= cap) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+            }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;bool empty() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (current == 0) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+            }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;void push(int x) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!full()) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[current] = x;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current++;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; "the stack is full ";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int pop() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!empty()) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current--;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return arr[current];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; "the stack is empty ";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+            }<br>
+        };<br>
+        void printStackAsFifo(Stack s, int size) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Stack s2(size);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;while (!s.empty()) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s2.push(s.pop());<br>
+            }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;while (!s2.empty()) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; s2.pop() &lt;&lt; "->";<br>
+            }<br>
+        }<br>
+        <br>
+        void insertionSort(int* arr, int size) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int j, key;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;for (int i = 1; i &lt; size; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = i - 1;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key = arr[i];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (key &lt; arr[j] && j &gt;= 0) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j + 1] = arr[j];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j--;<br>
+                }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j + 1] = key;<br>
+            }<br>
+        }<br>
+        void orderStack(Stack& s, int size) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int* arr = new int[size];<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int i = 0;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;while (!s.empty()) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i] = s.pop();<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+            }<br>
+            insertionSort(arr, size);<br>
+            i = 0;<br>
+            while (i &lt; size) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.push(arr[i]);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+            }<br>
+            delete[] arr;<br>
+        }<br>
+        <br>
+        int main() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int size = 8;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Stack s(size);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(10);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(11);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(8);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(12);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(54);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(39);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(2324);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;s.push(3);<br>
+            orderStack(s, size);<br>
+            printStackAsFifo(s, size);<br>
+        }<br>
+    </div>
+</body>
+</html>
