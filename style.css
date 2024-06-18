@@ -5,3 +5,16 @@ li{
     list-style: none;
 
 }
+button{
+    padding: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid #0a04f4 ;
+    cursor: pointer;
+    transition: 200ms ;
+}
+button:hover{
+    background-color: #0c04f44e ;
+    color: snow;
+}
