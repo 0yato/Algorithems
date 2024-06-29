@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaying C++ Code in HTML</title>
+    <style>
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <h1>hint:start from 1 to size-1</h1>
+    <div class="code-block">
+        #include &lt;iostream&gt;<br>
+        using namespace std;<br>
+        int mul[] = { 40, 20, 30, 10, 30 };<br>
+        int f(int i, int j) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (i == j) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;int answer = INT_MAX;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;int q;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;for (int k = i; k &lt; j; k++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q = f(i, k) + f(k + 1, j) + (mul[i-1] * mul[k] * mul[j]);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer = min(answer, q);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return answer;<br>
+        }<br>
+        int main() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; f(1, 4);<br>
+        }<br>
+    </div>
+</body>
+</html>
