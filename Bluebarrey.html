@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaying C++ Code in HTML</title>
+    <style>
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <div class="code-block">
+        #include &lt;iostream&gt;<br>
+        using namespace std;<br>
+        int Mat[2][15] = { {3 ,2 ,5 ,1 ,8 ,4 ,2 ,7 ,2 ,1 ,9 ,3 ,7 ,2 ,9},{1, 5, 4 ,7 ,1, 6, 9, 2, 4, 8, 4, 6, 1, 5, 5 } };<br>
+        int p;<br>
+        int f(int i, int j) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if (j == 0) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Mat[i][j];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;else {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n1 = f(i, j - 1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int n2 = f(1 - i, j - 1) - p;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return max(n2, n1) + Mat[i][j];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }<br>
+        int main() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;int barrey;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;cin &gt;&gt; barrey;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;cin &gt;&gt; p;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// Mat[0] = new int[barrey];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// Mat[1] = new int[barrey];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// for (int i = 0; i &lt; barrey; i++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// cin &gt;&gt; Mat[0][i];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// for (int i = 0; i &lt; barrey; i++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// cin &gt;&gt; Mat[1][i];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; max(f(1, barrey - 1), f(0, barrey - 1));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+        }<br>
+    </div>
+</body>
+</html>
